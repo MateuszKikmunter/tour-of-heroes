@@ -44,6 +44,10 @@ export class HeroService {
     );
   }
 
+  public addHero(hero: Hero): Observable<Hero> {
+    return this.http.post<Hero>(this.heroesUrl, hero, options);
+  }
+
   private log(mesage: string): void {
     this.messageService.add(`HeroService: ${mesage}`);
   }

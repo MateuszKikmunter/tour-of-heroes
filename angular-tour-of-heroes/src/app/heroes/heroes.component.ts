@@ -1,3 +1,4 @@
+import { Hero } from './../hero';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-  public hero: string = "windstorm";
+  public hero: Hero = {
+    id: 1,
+    name: "Windstorm"
+  };
 
   constructor() { }
 

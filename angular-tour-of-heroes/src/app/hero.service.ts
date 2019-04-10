@@ -7,6 +7,12 @@ import { HEROES } from './mock-heroes';
 import { Hero } from './hero';
 import { MessageService } from './message.service';
 
+const options = {
+  headers: new HttpHeaders({
+    "Content-Type": "application/json"
+  })
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -28,6 +34,13 @@ export class HeroService {
     return this.http.get<Hero>(`${this.heroesUrl}/${id}`).pipe(
       tap(_ => this.log(`fetched hero with id = ${id}`)),
       catchError(this.handleError<Hero>(`getHero id=${id}`))
+    );
+  }
+
+  public updateHero(hero: Hero): Observable<any> {
+    return this.http.put(this.heroesUrl, hero, options).pipe(
+      tap(_ => this.log(`updated hero id=${hero.id}`)),
+      catchError(this.handleError<any>('updateHero'))
     );
   }
 

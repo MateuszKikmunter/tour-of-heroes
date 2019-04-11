@@ -48,6 +48,10 @@ export class HeroService {
     return this.http.post<Hero>(this.heroesUrl, hero, options);
   }
 
+  deleteHero (hero: Hero): Observable<Hero> {
+    return this.http.delete<Hero>(`${this.heroesUrl}/${hero.id}`, options);
+  }
+
   private log(mesage: string): void {
     this.messageService.add(`HeroService: ${mesage}`);
   }
